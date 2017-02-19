@@ -1,8 +1,28 @@
 package mco364;
 
-import java.awt.Robot;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+class MyThread extends Thread {
+
+    MyThread() {
+        BlockingQueue<Runnable> que = (BlockingQueue) new ArrayList<>();
+        ThreadPoolExecutor execute = new ThreadPoolExecutor(10, 10, 10000, TimeUnit.MILLISECONDS, que);
+    }
+    
+    @Override
+    public void run(){
+        
+        
+        
+    }
+    
+    
+    
+    
+}
 
 public class Main {
 
@@ -10,12 +30,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        int[][] board = new int[100][100];
 
         clearConsole();
 
         for (int i = 0; i < 10; i++) {
             System.out.println(i);
-            sleep(1000);
+
+            sleep(500);
             clearConsole();
         }
     }
