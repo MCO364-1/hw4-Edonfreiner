@@ -1,28 +1,10 @@
 package mco364;
 
-import java.util.ArrayList;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
-class MyThread extends Thread {
-
-    MyThread() {
-        BlockingQueue<Runnable> que = (BlockingQueue) new ArrayList<>();
-        ThreadPoolExecutor execute = new ThreadPoolExecutor(10, 10, 10000, TimeUnit.MILLISECONDS, que);
-    }
-    
-    @Override
-    public void run(){
-        
-        
-        
-    }
-    
-    
-    
-    
-}
+import static java.lang.Thread.sleep;
+import java.util.Scanner;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -30,16 +12,27 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int[][] board = new int[100][100];
+        System.out.println("Please choose a pattern to portray");
+        Scanner scan = new Scanner(System.in);
 
+        choose(scan.nextInt());
+        printBoard();
         clearConsole();
+        sleep(10000);
+    }
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(i);
+    public static void printBoard() {
 
-            sleep(500);
-            clearConsole();
+        while (true) {
+            for (int i = 0; i < GameOfLife.thisGen.length; i++) {
+                for (int j = 0; j < GameOfLife.thisGen.length; j++) {
+                    System.out.print(GameOfLife.thisGen[i][j]);
+                }
+                System.out.println("");
+            }
+
         }
+
     }
 
     public final static void clearConsole() {
@@ -66,4 +59,133 @@ public class Main {
 // ignore
         }
     }
+
+    public static void choose(int i) {
+
+        if (i == 1) {
+            blinker();
+        }
+
+        if (i == 2) {
+            toad();
+        }
+
+        if (i == 3) {
+            beacon();
+        }
+
+        if (i == 4) {
+            pulsar();
+        }
+
+        if (i == 5) {
+            pentadecathlon();
+        }
+
+    }
+
+
+
+    public static void blinker() {
+
+        GameOfLife.thisGen[12][11] = '\u2588';
+        GameOfLife.thisGen[12][12] = '\u2588';
+        GameOfLife.thisGen[12][13] = '\u2588';
+
+    }
+
+    public static void toad() {
+        GameOfLife.thisGen[12][12] = '\u2588';
+        GameOfLife.thisGen[12][13] = '\u2588';
+        GameOfLife.thisGen[12][14] = '\u2588';
+        GameOfLife.thisGen[13][11] = '\u2588';
+        GameOfLife.thisGen[13][12] = '\u2588';
+        GameOfLife.thisGen[13][13] = '\u2588';
+
+    }
+
+    public static void beacon() {
+        GameOfLife.thisGen[10][10] = '\u2588';
+        GameOfLife.thisGen[10][11] = '\u2588';
+        GameOfLife.thisGen[11][10] = '\u2588';
+        GameOfLife.thisGen[11][11] = '\u2588';
+        GameOfLife.thisGen[12][12] = '\u2588';
+        GameOfLife.thisGen[12][13] = '\u2588';
+        GameOfLife.thisGen[13][12] = '\u2588';
+        GameOfLife.thisGen[13][13] = '\u2588';
+    }
+
+    public static void pulsar() {
+        //Top Left
+        GameOfLife.thisGen[7][9] = '\u2588';
+        GameOfLife.thisGen[7][10] = '\u2588';
+        GameOfLife.thisGen[7][11] = '\u2588';
+        GameOfLife.thisGen[9][7] = '\u2588';
+        GameOfLife.thisGen[10][7] = '\u2588';
+        GameOfLife.thisGen[11][7] = '\u2588';
+        GameOfLife.thisGen[12][9] = '\u2588';
+        GameOfLife.thisGen[12][10] = '\u2588';
+        GameOfLife.thisGen[12][11] = '\u2588';
+        GameOfLife.thisGen[9][12] = '\u2588';
+        GameOfLife.thisGen[10][12] = '\u2588';
+        GameOfLife.thisGen[11][12] = '\u2588';
+
+        //Bottom Left
+        GameOfLife.thisGen[14][9] = '\u2588';
+        GameOfLife.thisGen[14][10] = '\u2588';
+        GameOfLife.thisGen[14][11] = '\u2588';
+        GameOfLife.thisGen[15][7] = '\u2588';
+        GameOfLife.thisGen[16][7] = '\u2588';
+        GameOfLife.thisGen[17][7] = '\u2588';
+        GameOfLife.thisGen[19][9] = '\u2588';
+        GameOfLife.thisGen[19][10] = '\u2588';
+        GameOfLife.thisGen[19][11] = '\u2588';
+        GameOfLife.thisGen[15][12] = '\u2588';
+        GameOfLife.thisGen[16][12] = '\u2588';
+        GameOfLife.thisGen[17][12] = '\u2588';
+
+        //Top Right
+        GameOfLife.thisGen[7][15] = '\u2588';
+        GameOfLife.thisGen[7][16] = '\u2588';
+        GameOfLife.thisGen[7][17] = '\u2588';
+        GameOfLife.thisGen[9][14] = '\u2588';
+        GameOfLife.thisGen[10][14] = '\u2588';
+        GameOfLife.thisGen[12][15] = '\u2588';
+        GameOfLife.thisGen[12][16] = '\u2588';
+        GameOfLife.thisGen[12][17] = '\u2588';
+        GameOfLife.thisGen[9][19] = '\u2588';
+        GameOfLife.thisGen[10][19] = '\u2588';
+        GameOfLife.thisGen[11][19] = '\u2588';
+
+        //Bottom Right
+        GameOfLife.thisGen[14][15] = '\u2588';
+        GameOfLife.thisGen[14][16] = '\u2588';
+        GameOfLife.thisGen[14][17] = '\u2588';
+        GameOfLife.thisGen[15][14] = '\u2588';
+        GameOfLife.thisGen[16][14] = '\u2588';
+        GameOfLife.thisGen[17][14] = '\u2588';
+        GameOfLife.thisGen[19][15] = '\u2588';
+        GameOfLife.thisGen[19][16] = '\u2588';
+        GameOfLife.thisGen[19][17] = '\u2588';
+        GameOfLife.thisGen[15][19] = '\u2588';
+        GameOfLife.thisGen[16][19] = '\u2588';
+        GameOfLife.thisGen[17][19] = '\u2588';
+
+    }
+
+    public static void pentadecathlon() {
+        GameOfLife.thisGen[11][10] = '\u2588';
+        GameOfLife.thisGen[11][15] = '\u2588';
+        GameOfLife.thisGen[12][8] = '\u2588';
+        GameOfLife.thisGen[12][9] = '\u2588';
+        GameOfLife.thisGen[12][11] = '\u2588';
+        GameOfLife.thisGen[12][12] = '\u2588';
+        GameOfLife.thisGen[12][13] = '\u2588';
+        GameOfLife.thisGen[12][14] = '\u2588';
+        GameOfLife.thisGen[12][16] = '\u2588';
+        GameOfLife.thisGen[12][17] = '\u2588';
+        GameOfLife.thisGen[13][10] = '\u2588';
+        GameOfLife.thisGen[13][15] = '\u2588';
+    }
+
 }
