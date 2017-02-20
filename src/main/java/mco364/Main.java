@@ -12,25 +12,39 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Please choose a pattern to portray");
-        Scanner scan = new Scanner(System.in);
+        System.out.println("Please choose a pattern.");
+        System.out.println("Press: ");
+        System.out.println("1: Blinker");
+        System.out.println("2: Toad");
+        System.out.println("3: Beacon");
+        System.out.println("4: Pulsar");
+        System.out.println("5: Pentadecathlon");
 
+        Scanner scan = new Scanner(System.in);
         choose(scan.nextInt());
-        printBoard();
-        clearConsole();
-        sleep(10000);
+        System.out.println("Press 'A' for automatic,");
+        System.out.println("or 'M' for manual");
+        String choice = scan.next();
+        
+        while (true) {
+            printBoard();
+            GameOfLife.nextGen();
+            if(choice.toUpperCase().equals("A")){
+                scan.next();
+            }
+            sleep(500);
+            clearConsole();
+
+        }
     }
 
     public static void printBoard() {
 
-        while (true) {
-            for (int i = 0; i < GameOfLife.thisGen.length; i++) {
-                for (int j = 0; j < GameOfLife.thisGen.length; j++) {
-                    System.out.print(GameOfLife.thisGen[i][j]);
-                }
-                System.out.println("");
+        for (int i = 0; i < GameOfLife.thisGen.length-2; i++) {
+            for (int j = 0; j < GameOfLife.thisGen.length-2; j++) {
+                System.out.print(GameOfLife.thisGen[i][j]);
             }
-
+            System.out.println("");
         }
 
     }
@@ -83,8 +97,6 @@ public class Main {
         }
 
     }
-
-
 
     public static void blinker() {
 
